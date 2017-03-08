@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html ng-app="startupers">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startupers</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <top-menu></top-menu>
+    <ui-view>
+        @RenderBody()
+    </ui-view>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angular-comp")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

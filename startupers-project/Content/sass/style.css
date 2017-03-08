@@ -1,0 +1,122 @@
+﻿body {
+  background-color: #fff;
+  font-family: sans-serif;
+  font-size: 14px; }
+
+.navbar {
+  height: 54px;
+  border-bottom: 1px solid #999;
+  margin: 0; }
+
+.logo-block {
+  display: inline-block;
+  height: 50px;
+  width: 40px;
+  float: left;
+  margin-right: 10px;
+  padding: 5px 0; }
+  .logo-block img {
+    height: auto;
+    width: 100%; }
+
+.navbar-menu {
+  list-style: none;
+  padding: 0;
+  display: inline-block;
+  float: left;
+  margin: 0; }
+  .navbar-menu li {
+    padding: 15px 10px 18px;
+    display: block;
+    float: left; }
+    .navbar-menu li:hover {
+      padding-bottom: 17px;
+      border-bottom: 2px solid #5985b2;
+      cursor: pointer; }
+
+.login-block {
+  float: right;
+  width: 410px; }
+
+.input-style {
+  width: 150px;
+  padding: 5px;
+  margin: 10px 10px; }
+  .input-style:focus {
+    outline: none; }
+
+.general-btn-style {
+  background-color: #5985b2;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 7px 10px; }
+  .general-btn-style:hover {
+    opacity: 0.8; }
+
+.page-content {
+  background-color: #f9f9f9; }
+
+.btn-group {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0; }
+  .btn-group li {
+    color: #999;
+    float: left;
+    padding: 5px 10px;
+    border: 1px solid #999;
+    margin: 0 5px;
+    background-color: #fff; }
+    .btn-group li:hover {
+      background-color: #999;
+      color: #fff;
+      cursor: pointer; }
+
+.heshtag-left-bar {
+  width: 100%;
+  border: 1px solid #999;
+  padding: 15px;
+  background-color: #fff; }
+
+.hashtag-title {
+  font-weight: bold;
+  padding-bottom: 10px;
+  display: block; }
+
+.heshtag-navbar {
+  list-style: none;
+  padding: 0; }
+  .heshtag-navbar li {
+    display: block;
+    padding: 5px 0; }
+    .heshtag-navbar li:hover {
+      background-color: #f5f5f5;
+      cursor: pointer; }
+
+.post-body {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #999; }
+  .post-body img {
+    width: 100%;
+    height: auto; }
+
+.hashtag-category {
+  list-style: none;
+  padding: 0; }
+  .hashtag-category li {
+    display: inline-block;
+    padding: 0 10px 10px; }
+
+.post-title {
+  display: block;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 10px 0; }
+
+.post-content-text {
+  padding: 10px; }
+  .post-content-text li {
+    padding-bottom: 10px; }
+

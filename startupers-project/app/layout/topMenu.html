@@ -1,0 +1,26 @@
+﻿<nav class="navbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <a href="#" class="logo-block"><img src="/Content/img/Logo.png" alt=""></a>
+                <ul class="navbar-menu">
+                    <li ui-sref="home"><span>Home</span></li>
+                    <li ui-sref="feed"><span>News</span></li>
+                    <li><span>Chat</span></li>
+                </ul>
+            </div>
+            <div class="col-xs-9">
+                <div class="login-block" ng-if="!$ctrl.rootScope.isAuthenticated">
+                    <form ng-submit="$ctrl.loginNewUser($ctrl.userData)">
+                        <input type="text" name="" value="" class="input-style" placeholder="Login" ng-model="$ctrl.userData.username"/>
+                        <input type="text" name="" value="" class="input-style" placeholder="Password" ng-model="$ctrl.userData.password"/>
+                        <button type="submit" name="login" class="general-btn-style">Log in</button>
+                    </form>
+                </div>
+                <div class="login-block" ng-if="$ctrl.rootScope.isAuthenticated">
+                    sasdasd
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
