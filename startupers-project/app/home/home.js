@@ -1,6 +1,6 @@
 ﻿(function () {
     angular.module('startupers.home', [])
-        .config(['$stateProvider', function ($stateProvider) {
+        .config(['$stateProvider', function ($stateProvider, loginService) {
             $stateProvider.state('home', {
                 url: '/',
                 template: '<home-page></home-page>',

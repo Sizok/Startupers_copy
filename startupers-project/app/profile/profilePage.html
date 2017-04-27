@@ -1,0 +1,30 @@
+﻿<div class="profile-page-body">
+    <div class="profile-header-bcg-block">
+        <img ng-src="{{$ctrl.appConfig.urlStartupersBlob + $ctrl.currentUser.imageCover}}" alt="" />
+    </div>
+    <div class="container">
+        <div class="profile-body">
+            <div class="user-avatar">
+                <img ng-src="{{$ctrl.appConfig.urlStartupersBlob + $ctrl.currentUser.photoMiddle}}" alt="" />
+                <span class="user-raiting">{{$ctrl.currentUser.raiting}}</span>
+            </div>
+            <div class="user-info">
+                <div class="user-friends">
+                    <div class="user-friends-cout">
+                        <span class="cout">{{$ctrl.currentUser.friendsCount}}</span>
+                        <span>connections</span>
+                    </div>
+                </div>
+                <span class="user-name">{{$ctrl.currentUser.firstName + ' ' + $ctrl.currentUser.lastName}}</span>
+                <span class="user-job">{{$ctrl.currentUser.about}}</span>
+                <span class="user-website"><a href="{{$ctrl.appConfig.http + $ctrl.currentUser.companyWebSite}}" target="_blank">{{$ctrl.currentUser.companyWebSite}}</a></span>
+                <span class="social-icon">
+                    <a href="{{$ctrl.currentUser.twitterLink}}" class="linkedin-icon"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    <a href="{{$ctrl.currentUser.linkedInLink}}" class="twitter-icon"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+

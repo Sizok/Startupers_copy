@@ -35,16 +35,27 @@ namespace startupers_project
 
             bundles.Add(new ScriptBundle("~/bundles/angular-comp").Include(
                       "~/app/app.js",
-                      "~/app/layout/topMenuComp.js",
+                      "~/app/layout/topMenuComponent.js",
+                      "~/app/layout/loginModalComponent.js",
                       "~/app/feed/feed.js",
-                      "~/app/feed/feedComp.js",
+                      "~/app/feed/feedComponent.js",
+                      "~/app/feed/postModalComponent.js",
                       "~/app/home/home.js",
-                      "~/app/home/homeComp.js",
+                      "~/app/home/homeComponent.js",
+                      "~/app/profile/profile.js",
+                      "~/app/profile/profileComponent.js",
+                      "~/app/chat/chat.js",
+                      "~/app/chat/chatComponent.js",
                       "~/app/services/feedService.js",
                       "~/app/services/linkService.js",
                       "~/app/services/loginService.js",
-                      "~/app/services/postModalService.js"
-
+                      "~/app/services/postModalService.js",
+                      "~/app/services/currentUserService.js",
+                      "~/app/services/cutLinkService.js",
+                      "~/app/services/cutLinkService.js",
+                      "~/app/services/chatService.js",
+                      "~/app/derectives/scrollDerective.js",
+                      "~/app/derectives/hidePostImageDerective.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

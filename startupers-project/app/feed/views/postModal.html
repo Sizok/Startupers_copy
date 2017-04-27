@@ -1,1 +1,27 @@
-﻿
+﻿<div class="post-body no-margin">
+    <span class="close-thik" ng-click="$ctrl.close()"></span>
+        <div class="post-img-content">
+        <a class="post-inner-img-block" id="{{$ctrl.currentPostData.id}}" href="{{$ctrl.currentPostData.link}}" target="_blank">
+            <img ng-src="{{$ctrl.appConfig.urlStartupersBlob + $ctrl.currentPostData.newsImage}}" alt="">
+        </a>
+        <span class="play-button hide-image" id="{{$ctrl.currentPostData.id}}" ng-if="$ctrl.currentPostData.video"><i class="fa fa-play" aria-hidden="true"></i></span>
+        <iframe ng-if="$ctrl.currentPostData.video" ng-src="{{$ctrl.appConfig.urlYoutubeBlob + $ctrl.currentPostData.video}}" width="100%" height="315" frameborder="0"></iframe>
+    </div>
+    <a href="{{$ctrl.currentPostData.link}}" target="_blank" class="post-title">{{$ctrl.currentPostData.title}}</a>
+    <div ng-click="$ctrl.openComponentModal(info)">
+        <span class="summarize">Summarize</span>
+        <ul class="post-content-text">
+            <li ng-repeat="sum in $ctrl.currentPostData.listSummary track by $index">{{sum}}</li>
+        </ul>
+    </div>
+    <a class="bottom-post-link" href="{{$ctrl.currentPostData.link}}" target="_blank">{{$ctrl.currentPostData.smallLink}}</a>
+    <div class="post-bottom-panel">
+        <span class="like-cout">{{$ctrl.currentPostData.like}}</span>
+        <span class="like-icon" ng-class="{'like-icon-active' : $ctrl.currentPostData.likeOrDislike == 1}"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+        <span class="dislike-icon" ng-class="{'dislike-icon-active' : $ctrl.currentPostData.likeOrDislike == 2}"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+        <div class="comment-count-block">
+            <span class="commet-cout">{{$ctrl.currentPostData.countComments}}</span>
+            <span class="comment-icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
+        </div>
+    </div>
+</div>

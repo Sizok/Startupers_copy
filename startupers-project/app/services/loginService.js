@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    function loginService($rootScope, $http, localStorageService) {
+    function loginService($rootScope, $http, localStorageService, $state, $timeout, curretUserService, $uibModal) {
         var factory = {};
 
         var loginData = {};
@@ -8,21 +8,28 @@
 
         factory.isAuthenticated = function () {
             if (factory.token && new Date(factory.expires) > new Date()) {
+                $timeout(function () {
+                    $state.go('feed');
+                });
                 return true;
             } else {
-                return false;
+                $timeout(function () {
+                    $state.go('home');
+                });
+                return false;  
             }
         };
 
-
         factory.loginUser = function (user) {
-            $http.post('https://startupers.us/oauth/token', $.param(user))
+            return $http.post('https://startupers.us/oauth/token', $.param(user))
                 .then(function (user) {
                     factory.userData = user;
                     var currentUser = {};
                     if (user && user.data['.expires'])
                         currentUser.expires = new Date(user.data['.expires']);
 
+                    factory.expires = currentUser.expires;
+                    factory.token = factory.userData.data.token_type;
                     currentUser.token = factory.userData.data.token_type + ' ' + factory.userData.data.access_token;
 
                     localStorageService.set('currentUser', currentUser)
@@ -35,9 +42,11 @@
                                 currentUser.data = user.data;
                                 localStorageService.set('currentUser', currentUser)
                                 factory.loginData = user;
-                                $rootScope.isAuthenticated = true;
-                                factory.isAuthenticated();
+                                curretUserService.currentUser = user;
+                                $rootScope.isAuthenticated = factory.isAuthenticated();
                             });
+                }, function(){
+                    factory.openLoginPopup();
                 });
         };
 
@@ -45,13 +54,24 @@
             localStorageService.remove('currentUser');
             delete $http.defaults.headers.common.Authorization;
             delete loginService.token;
-            $rootScope.isAuthenticated = false;
-            factory.isAuthenticated();
+            factory.token = null;
+            factory.expires = null;
+            $rootScope.isAuthenticated = factory.isAuthenticated();
+            $timeout(function () {
+                $state.go('home');
+            });
+        }
+
+        factory.openLoginPopup = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: 'loginModalPage',
+            });
         }
 
         return factory;
     }
 
-    loginService.$inject = ['$rootScope', '$http', 'localStorageService'];
+    loginService.$inject = ['$rootScope', '$http', 'localStorageService', '$state', '$timeout', 'curretUserService', '$uibModal'];
     angular.module('login.Service', []).factory('loginService', loginService);
 })();

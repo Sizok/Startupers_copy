@@ -4,21 +4,32 @@
             <div class="col-xs-3">
                 <a href="#" class="logo-block"><img src="/Content/img/Logo.png" alt=""></a>
                 <ul class="navbar-menu">
-                    <li ui-sref="home"><span>Home</span></li>
-                    <li ui-sref="feed"><span>News</span></li>
-                    <li><span>Chat</span></li>
+                    <li ui-sref="home" ui-sref-active="navbar-active" ng-if="!$ctrl.rootScope.isAuthenticated" ><span>Home</span></li>
+                    <li ui-sref="feed" ui-sref-active="navbar-active" ng-if="$ctrl.rootScope.isAuthenticated"><span>News</span></li>
+                    <li ui-sref="chat" ui-sref-active="navbar-active" ng-if="$ctrl.rootScope.isAuthenticated"><span >Chat</span></li>
                 </ul>
             </div>
             <div class="col-xs-9">
                 <div class="login-block" ng-if="!$ctrl.rootScope.isAuthenticated">
-                    <form ng-submit="$ctrl.loginNewUser($ctrl.userData)">
-                        <input type="text" name="" value="" class="input-style" placeholder="Login" ng-model="$ctrl.userData.username"/>
-                        <input type="text" name="" value="" class="input-style" placeholder="Password" ng-model="$ctrl.userData.password"/>
-                        <button type="submit" name="login" class="general-btn-style">Log in</button>
+                    <form name="loginForm" ng-submit="$ctrl.loginNewUser(loginForm.$valid, $ctrl.userData)" novalidate>
+                        <input type="email" name="" value="" class="input-style" placeholder="Login" ng-model="$ctrl.userData.username" ng-required="true" />
+                        <input type="password" name="" value="" class="input-style" placeholder="Password" ng-model="$ctrl.userData.password" ng-required="true" />
+                        <button type="submit" name="login" class="general-btn-style" ng-disabled="loginForm.$invalid">Log in</button>
                     </form>
                 </div>
                 <div class="login-block" ng-if="$ctrl.rootScope.isAuthenticated">
-                    sasdasd
+                    <div class="login-user-block">
+         
+                        <a href="#" class="dropdown-toggle user-avatar-block" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img ng-src="{{$ctrl.appConfig.urlStartupersBlob + $ctrl.curretUserService.currentUser.data.photoMiddle}}" alt="" />
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ui-sref="profile"><span>Profile</span></li>
+                            <li><span>Settings</span></li>
+                            <li ng-click="$ctrl.logOut()"><span>Log out</span></li>
+                        </ul>
+                        <button type="submit" name="login" class="general-btn-style">Post</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,41 +1,62 @@
 ﻿<section class="page-content">
+    <div class="scroll-top-button go-top display-button-for-scroll" id="up">
+        <span>GO TOP</span>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-xs-6 col-xs-offset-3">
                 <ul class="btn-group">
-                    <li>Trending</li>
-                    <li>New</li>
-                    <li>Weekly best</li>
+                    <li ui-sref="feed({lastOrHot: null })" ng-class="{'btn-group-active' : $ctrl.stateParams.lastOrHot == null}">Trending</li>
+                    <li ui-sref="feed({lastOrHot: 'last' })" ui-sref-active="btn-group-active">New</li>
+                    <li ui-sref="feed({lastOrHot: 'hot' })" ui-sref-active="btn-group-active">Weekly best</li>
                 </ul>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-3">
-                <div class="heshtag-left-bar">
+                <div class="hashtag-left-bar">
                     <span class="hashtag-title">Filter by category</span>
-                    <ul class="heshtag-navbar">
-                        <li><span>Lessons & Advice</span></li>
-                        <li><span>Motivation</span></li>
-                        <li><span>News</span></li>
-                        <li><span>Q & A</span></li>
-                        <li><span>My startup</span></li>
-                        <li><span>Other</span></li>
+                    <ul class="hashtag-navbar">
+                        <li ng-repeat="hashtag in $ctrl.hashtags" ui-sref="feed({ hashtag: '{{hashtag.name}}' })" ui-sref-active="hashtag-active"><span>{{hashtag.name}}</span></li>
                     </ul>
                 </div>
             </div>
             <div class="col-xs-6">
-                <div class="post-body">
-                    <ul class="hashtag-category">
-                        <li>News</li>
-                        <li>News</li>
-                    </ul>
-                    <img src="/img/post-img.jpeg" alt="">
-                    <span class="post-title">In Deal With Didi, Uber Frees Itself to Expand in Other Markets</span>
-                    <ul class="post-content-text">
-                        <li>Didi Chuxing, the dominant ride-hailing service in China, said it will acquire Uber Technologies Inc.’s operations in the country.</li>
-                        <li>Didi Chuxing, the dominant ride-hailing service in China, said it will acquire Uber Technologies Inc.’s operations in the country.</li>
-                        <li>Didi Chuxing, the dominant ride-hailing service in China, said it will acquire Uber Technologies Inc.’s operations in the country.</li>
-                    </ul>
+                <div infinite-scroll="$ctrl.getNewPosts()" infinite-scroll-distance="1" infinite-scroll-disabled="$ctrl.progress">
+                    <div class="post-body" ng-repeat="info in $ctrl.posts track by $index">
+                        <ul class="hashtag-category" ng-repeat="hash in info.hashtags">
+                            <li>{{hash}}</li>
+                            <li class="class-bookmark">
+                                <span ng-if="!info.isFave"><i class="fa fa-bookmark-o" aria-hidden="true"></i></span>
+                                <span ng-if="info.isFave" class="bookmark-active"><i class="fa fa-bookmark" aria-hidden="true"></i></span>
+                            </li>
+                        </ul>
+                        
+                        <div class="post-img-content">
+                            <a class="post-inner-img-block" id="{{info.id}}" href="{{info.link}}" target="_blank">
+                                <img ng-src="{{$ctrl.appConfig.urlStartupersBlob + info.newsImage}}" alt="">
+                            </a>
+                            <span class="play-button hide-image" id="{{info.id}}" ng-if="info.video"><i class="fa fa-play" aria-hidden="true"></i></span>
+                            <iframe ng-if="info.video" ng-src="{{$ctrl.appConfig.urlYoutubeBlob + info.video}}" width="100%" height="315" frameborder="0" ></iframe>
+                        </div>
+                        <a href="{{info.link}}" target="_blank" class="post-title">{{info.title}}</a>
+                        <div ng-click="$ctrl.openComponentModal(info)">
+                            <span class="summarize">Summarize</span>
+                            <ul class="post-content-text">
+                                <li ng-repeat="sum in info.listSummary track by $index">{{sum}}</li>
+                            </ul>
+                        </div>
+                        <a class="bottom-post-link" href="{{info.link}}" target="_blank">{{info.smallLink}}</a>
+                        <div class="post-bottom-panel">
+                            <span class="like-cout">{{info.like}}</span>
+                            <span class="like-icon" ng-class="{'like-icon-active' : info.likeOrDislike == 1}"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                            <span class="dislike-icon" ng-class="{'dislike-icon-active' : info.likeOrDislike == 2}"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+                            <div class="comment-count-block">
+                                <span class="commet-cout">{{info.countComments}}</span>
+                                <span class="comment-icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

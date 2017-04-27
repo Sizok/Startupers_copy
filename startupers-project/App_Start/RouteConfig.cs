@@ -13,6 +13,22 @@ namespace startupers_project
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "Feed",
+                url: "feed",
+                defaults: new { controller = "Home", action = "Index" }
+                );
+            routes.MapRoute(
+                name: "Profile",
+                url: "profile",
+                defaults: new { controller = "Home", action = "Index" }
+                );
+            routes.MapRoute(
+                name: "Chat",
+                url: "chat",
+                defaults: new { controller = "Home", action = "Index" }
+                );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

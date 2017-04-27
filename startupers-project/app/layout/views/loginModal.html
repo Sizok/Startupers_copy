@@ -1,0 +1,18 @@
+﻿<div class="login-modal-body">
+    <span class="close-thik" ng-click="$ctrl.close()"></span>
+    <span class="login-modal-title">Incorect login or password</span>
+    <div class="modal-input-block">
+        <form name="popupLoginForm" ng-submit="$ctrl.loginNewUser(popupLoginForm.$valid, $ctrl.userData)" novalidate>
+            <div class="error-block" ng-messages="popupLoginForm.email.$error">
+                <span ng-if="popupLoginForm.email.$touched" ng-message="minlength">Email has be minimum 6 letters</span>
+                <span ng-if="popupLoginForm.email.$touched" ng-message="required">Email must be filled</span>
+            </div>
+            <input type="email" name="email" value="" class="modal-login-input" placeholder="Login" ng-model="$ctrl.userData.username" ng-required="true" ng-minlength="6"/>
+            <div class="error-block" ng-messages="popupLoginForm.password.$error">
+                <span ng-if="popupLoginForm.password.$touched" ng-message="required">Password must be filled</span>
+            </div>
+            <input type="password" name="password" value="" class="modal-login-input" placeholder="Password" ng-model="$ctrl.userData.password" ng-required="true" />
+            <button class="general-btn-style login-modal-btn">Log in</button>
+        </form>
+    </div>
+</div>
